@@ -3,12 +3,10 @@
 // Copyright (c) 2023 RobôCIn. All rights reserved.
 //
 
-#include <bits/stdc++.h>
-#include "Entities/Entities.h"
 #include "rcssimulation/Network/Network.h"
 
 int main(){
-    Network::connect();
-    std::cout << "Hello!\n";
+    Network::Connection::connectToServer();
+    Network::Connection::disconnectFromServer();
     return 1;
 }

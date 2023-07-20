@@ -5,14 +5,21 @@
 #ifndef RCSSIMULATION_NETWORK_H
 #define RCSSIMULATION_NETWORK_H
 
-#include <bits/stdc++.h>
+#include "NetworkUtils.h"
 
-class Network {
-public:
-    static void connect(){
-        std::cout << "connect!" << std::endl;
-    }
-};
+namespace Network {
+    class Connection {
+    public:
+        static void connectToServer() {
+           std::cout << Command::playerInit("MyTeam", 2.0);
+        }
+
+        static void disconnectFromServer() {
+            std::cout << Command::playerBye();
+        }
+    };
+}
+
 
 
 #endif //RCSSIMULATION_NETWORK_H

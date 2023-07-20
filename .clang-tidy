@@ -12,7 +12,7 @@ Checks: >
   google-*,
   hicpp-*,
   linuxkernel-*,
-  llvm-*, -llvm-header-guard, -llvm-include-order,
+  llvm-*, -llvm-include-order, -llvm-header-guard,
   misc-*,
   modernize-*, -modernize-use-trailing-return-type,
   mpi-*,
@@ -78,13 +78,11 @@ CheckOptions:
   - key: readability-identifier-naming.ClassCase
     value: CamelCase
   - key: readability-identifier-naming.ClassIgnoredRegexp
-    value: "^(const_)?([a-zA-Z0-9_]*)(_t|_?type|_?iterator|_?pointer|_?reference)$"
+    value: "^[a-z][a-zA-Z0-9_]*_t$"
   - key: readability-identifier-naming.ClassConstantCase
-    value: CamelCase
-  - key: readability-identifier-naming.ClassConstantPrefix
-    value: k
+    value: camelBack
   - key: readability-identifier-naming.ClassMemberCase
-    value: lower_case
+    value: camelBack
   - key: readability-identifier-naming.ClassMethodCase
     value: camelBack
 
@@ -93,8 +91,6 @@ CheckOptions:
     value: CamelCase
   - key: readability-identifier-naming.EnumConstantCase
     value: CamelCase
-  - key: readability-identifier-naming.EnumConstantPrefix
-    value: e
   - key: readability-identifier-naming.ScopedEnumConstantCase
     value: CamelCase
 
@@ -104,17 +100,19 @@ CheckOptions:
 
   # * global:
   - key: readability-identifier-naming.GlobalConstantCase
-    value: CamelCase
-  - key: readability-identifier-naming.GlobalConstantPrefix
-    value: k
-  - key: readability-identifier-naming.GlobalConstantIgnoredRegexp
-    value: "^[a-z][a-zA-Z0-9]*_v$"
+    value: UPPER_CASE
+  - key: readability-identifier-naming.GlobalConstantPointerCase
+    value: UPPER_CASE
+  - key: readability-identifier-naming.GlobalPointerCase
+    value: UPPER_CASE
 
   # * local:
   - key: readability-identifier-naming.LocalConstantCase
-    value: CamelCase
-  - key: readability-identifier-naming.LocalConstantPrefix
-    value: k
+    value: lower_case
+  - key: readability-identifier-naming.LocalConstantPointerCase
+    value: lower_case
+  - key: readability-identifier-naming.LocalPointerCase
+    value: lower_case
 
   # * macro:
   - key: readability-identifier-naming.MacroDefinitionCase
@@ -122,11 +120,9 @@ CheckOptions:
 
   # * member:
   - key: readability-identifier-naming.MemberCase
-    value: lower_case
+    value: camelBack
   - key: readability-identifier-naming.ConstantMemberCase
-    value: CamelCase
-  - key: readability-identifier-naming.ConstantMemberPrefix
-    value: k
+    value: UPPER_CASE
 
   # * method:
   - key: readability-identifier-naming.MethodCase
@@ -134,25 +130,29 @@ CheckOptions:
 
   # * parameter:
   - key: readability-identifier-naming.ParameterCase
-    value: lower_case
+    value: camelBack
   - key: readability-identifier-naming.ParameterPackCase
     value: lower_case
-  - key: readability-identifier-naming.ConstantParameterCase
+  - key: readability-identifier-naming.PointerParameterCase
     value: lower_case
+  - key: readability-identifier-naming.ConstantParameterCase
+    value: camelBack
+  - key: readability-identifier-naming.ConstantPointerParameterCase
+    value: camelBack
 
   # * private:
-  - key: readability-identifier-naming.PrivateMemberSuffix
-    value: _
+  - key: readability-identifier-naming.PrivateMemberPrefix
+    value:
 
   # * protected:
-  - key: readability-identifier-naming.ProtectedMemberSuffix
-    value: _
+  - key: readability-identifier-naming.ProtectedMemberPrefix
+    value:
 
   # * struct:
   - key: readability-identifier-naming.StructCase
     value: CamelCase
   - key: readability-identifier-naming.StructIgnoredRegexp
-    value: "^(const_)?([a-zA-Z0-9_]*)(_t|_?type|_?iterator|_?pointer|_?reference)$"
+    value: "^[a-z][a-zA-Z0-9_]*_t$"
 
   # * template:
   - key: readability-identifier-naming.TemplateParameterCase
@@ -162,7 +162,7 @@ CheckOptions:
   - key: readability-identifier-naming.TypeAliasCase
     value: CamelCase
   - key: readability-identifier-naming.TypeAliasIgnoredRegexp
-    value: "^(const_)?([a-zA-Z0-9_]*)(_t|_?type|_?iterator|_?pointer|_?reference)$"
+    value: "^[a-z][a-zA-Z0-9_]*_t$"
 
   # * union:
   - key: readability-identifier-naming.UnionCase
