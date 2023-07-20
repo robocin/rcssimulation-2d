@@ -6,6 +6,7 @@
 #define RCSSIMULATION_NETWORK_H
 
 #include "NetworkUtils.h"
+#include "UDPSocket.h"
 
 namespace Network {
     class Connection {
