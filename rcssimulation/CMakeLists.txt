@@ -1,6 +1,7 @@
 add_subdirectory(Communication)
 add_subdirectory(Entities)
 add_subdirectory(Network)
+add_subdirectory(Utils)
 
 robocin_cpp_executable(
         NAME robocin_player
