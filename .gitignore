@@ -32,3 +32,6 @@
 *.app
 /bin
 /cmake-build-debug
+
+# Build
+build
