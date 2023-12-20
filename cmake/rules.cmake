@@ -210,3 +210,45 @@ function(robocin_cpp_executable)
 endfunction(robocin_cpp_executable)
 
 ########################################################################################################################
+
+
+########################################################################################################################
+
+# Add cpp executable
+function(simple_client_cpp_executable)
+    cmake_parse_arguments(
+            ARG                            # prefix of output variables
+            ""                             # list of names of the boolean arguments
+            "NAME"                         # list of names of mono-valued arguments
+            "HDRS;SRCS;RSRCS;DEPS;MACROS"  # list of names of multi-valued arguments
+            ${ARGN}                        # arguments of the function to parse (ARGN contains all the arguments after the function name)
+    )
+
+    # # check if at least one source file is given with suffix '_main.cpp'
+    # if (NOT ARG_SRCS)
+    #     message(FATAL_ERROR "simple_client_cpp_executable: no source files given")
+    # else ()
+    #     set(FILTERED_SRCS ${ARG_SRCS})
+    #     list(FILTER FILTERED_SRCS INCLUDE REGEX "_main\.cpp$")
+
+    #     if (NOT FILTERED_SRCS)
+    #         message(FATAL_ERROR "simple_client_cpp_executable: no source files given with suffix '_main.cpp'")
+    #     endif ()
+    # endif ()
+
+    add_executable(${ARG_NAME} ${ARG_HDRS} ${ARG_SRCS} ${ARG_RSRCS}) # add executable with given name, headers, sources and resources
+    target_link_libraries(${ARG_NAME} PRIVATE ${ARG_DEPS}) # link library with given dependencies
+
+    target_include_directories(${ARG_NAME} PRIVATE ${ROBOCIN_PROJECT_PATH})
+    target_include_directories(${ARG_NAME} PRIVATE ${CMAKE_BINARY_DIR})
+
+    target_compile_definitions(${ARG_NAME} PRIVATE ROBOCIN_PROJECT_NAME="${ROBOCIN_PROJECT_NAME}")
+    target_compile_definitions(${ARG_NAME} PRIVATE ROBOCIN_PROJECT_PATH="${ROBOCIN_PROJECT_PATH}")
+
+    if (ARG_MACROS)
+        target_compile_definitions(${ARG_NAME} ${ARG_MACROS})
+    endif ()
+
+endfunction(simple_client_cpp_executable)
+
+########################################################################################################################
