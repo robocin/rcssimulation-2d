@@ -10,15 +10,12 @@
 void send_command_from_stdin(UDPSocket udp_conn)
 {
     char msg_buffer[MESSAGE_BUFFER_SIZE];
-    // get command (stdin input)
     std::cin.getline(msg_buffer, sizeof(char)*MESSAGE_BUFFER_SIZE);
-    // send stdin input to socket
     udp_conn.sendMessage(msg_buffer);
 }
 
 void get_and_print_server_msg(UDPSocket udp_conn)
 {
-    // Check for socket input
     std::string msg = udp_conn.receiveMessage();
     std::cout << msg << std::endl;
 }
@@ -29,7 +26,6 @@ void messageLoop()
     UDPSocket udp_conn = UDPSocket();
     while(true)
     {
-
         if(is_fd_set(fileno(stdin)))
         {
             send_command_from_stdin(udp_conn);
